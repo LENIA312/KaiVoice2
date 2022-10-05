@@ -9,13 +9,19 @@ public class Achievemenlayer : MonoBehaviour
 
     public void setup(voiceAttach voices)
     {
+        // オブジェクトを全削除
+        foreach (Transform n in contents.transform)
+        {
+            GameObject.Destroy(n.gameObject);
+        }
 
+        // オブジェクトを生成
         foreach (var i in voices.GetVoiceData())
         {
-            var buttons = Instantiate(voiceDataItem);
-            buttons.setup(i.VoicesName, PlayerPrefs.GetInt(LocalSaveKey.voiceCount + "_" + i.Voices.name, 0));
-            buttons.gameObject.transform.parent = contents.transform;
-            buttons.gameObject.SetActive(true);
+            var ItemData = Instantiate(voiceDataItem);
+            ItemData.setup(i.VoicesName, PlayerPrefs.GetInt(LocalSaveKey.voiceCount + "_" + i.Voices.name, 0));
+            ItemData.gameObject.transform.parent = contents.transform;
+            ItemData.gameObject.SetActive(true);
         }
 
     }
