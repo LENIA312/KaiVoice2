@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "KaiVoice/CreatVoiceTable", fileName = "VoiceTable")]
+
+[CreateAssetMenu(menuName = "KaiVoice/VoiceTable", fileName = "VoiceTable")]
 
 public class voiceAttach : ScriptableObject
 {
-    
-    [SerializeField] public List<AudioClip> Voices;
-    [SerializeField] public List<string> VoicesName;
+    [SerializeField] VoiceData[] Voices;
 
+    [Serializable]
     public class VoiceData
     {
-        public AudioClip Voices;
-        public string VoicesName;
+        public AudioClip voices;
+        public string voiseName;
 
         public VoiceData(AudioClip audioClip, string name)
         {
-            Voices = audioClip;
-            VoicesName = name;
+            voices = audioClip;
+            voiseName = name;
         }
     }
 
@@ -27,12 +29,9 @@ public class voiceAttach : ScriptableObject
     {
         var voiceData = new List<VoiceData>();
 
-        foreach (var i in Voices.Select((value,Index)=> new
+        foreach (var i in Voices)
         {
-            value,Index
-        }))
-        {
-            voiceData.Add(new VoiceData(Voices[int.Parse(i.Index.ToString())], VoicesName[int.Parse(i.Index.ToString())]));
+            voiceData.Add(new VoiceData(i.voices,i.voiseName));
         }
 
         return voiceData;

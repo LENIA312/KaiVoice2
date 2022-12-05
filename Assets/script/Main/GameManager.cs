@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour
         foreach(var i in voices.GetVoiceData()) {
             var buttons = Instantiate(buttonPrefab);
             buttons.setup(() => { 
-                voicePlay(i.Voices);
-                VoiceCount(i.Voices.name);
-            }, i.VoicesName);
+                voicePlay(i.voices);
+                VoiceCount(i.voiseName);
+            }, i.voiseName);
             buttons.gameObject.transform.parent = contents.transform;
             buttons.gameObject.SetActive(true);
         }

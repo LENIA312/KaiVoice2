@@ -19,7 +19,7 @@ public class Achievemenlayer : MonoBehaviour
         foreach (var i in voices.GetVoiceData())
         {
             var ItemData = Instantiate(voiceDataItem);
-            ItemData.setup(i.VoicesName, PlayerPrefs.GetInt(LocalSaveKey.voiceCount + "_" + i.Voices.name, 0));
+            ItemData.setup(i.voiseName, PlayerPrefs.GetInt(LocalSaveKey.voiceCount + "_" + i.voiseName, 0));
             ItemData.gameObject.transform.parent = contents.transform;
             ItemData.gameObject.SetActive(true);
         }
